@@ -10,7 +10,7 @@ from langchain.embeddings import VertexAIEmbeddings
 import os
 
 # get the creds
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= "secrets/glossy-attic-415618-93704b0714e2.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= "secrets/glossy-attic-415618-93704b0714e2.json"
 
 TEMP_FILE_PATH = "temp.txt"
 
