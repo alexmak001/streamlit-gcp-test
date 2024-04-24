@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from langchain.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.vectorstores import DocArrayInMemorySearch
-import vertexai
 from langchain.llms import VertexAI
 from langchain.embeddings import VertexAIEmbeddings
 import os
@@ -13,10 +12,11 @@ import os
 # get the creds
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= "secrets/glossy-attic-415618-93704b0714e2.json"
 
-TEMP_FILE_PATH = "secrets/temp.txt"
+TEMP_FILE_PATH = "temp.txt"
 
 llm = VertexAI(
     model_name="gemini-pro",
+    project="glossy-attic-415618",
     max_output_tokens=256,
     temperature=0.1,
     top_p=0.8,
