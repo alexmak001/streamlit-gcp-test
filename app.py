@@ -11,6 +11,11 @@ import os
 
 # get the creds
 #os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= "secrets/glossy-attic-415618-93704b0714e2.json"
+print("GOOGLE APPLICATION CREDENTIALS BELOW PRINTED")
+print(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
+
+#st.header("GOOGLE CRED BELOW")
+#st.write(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 TEMP_FILE_PATH = "temp.txt"
 
