@@ -28,7 +28,7 @@ llm = VertexAI(
     top_k=40,
     verbose=True,)
     
-embeddings = VertexAIEmbeddings()
+embeddings = VertexAIEmbeddings(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 
 def get_text(url):
