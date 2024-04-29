@@ -17,10 +17,10 @@ import json
 from google.oauth2 import service_account
 
 # for running locally
-#secret = json.load(open("secrets/glossy-attic-415618-93704b0714e2.json"))
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(json.load(open("secrets/glossy-attic-415618-93704b0714e2.json")))
 
 # for running on GCP
-secret = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+secret = eval(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 credentials = service_account.Credentials.from_service_account_info(secret)
 
