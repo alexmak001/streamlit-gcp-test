@@ -5,17 +5,24 @@ from bs4 import BeautifulSoup
 from langchain.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.vectorstores import DocArrayInMemorySearch
-from langchain.llms import VertexAI
-from langchain.embeddings import VertexAIEmbeddings
+#from langchain.llms import VertexAI
+#from langchain.embeddings import VertexAIEmbeddings
+
+from langchain_google_vertexai import VertexAIEmbeddings
+from langchain_google_vertexai import VertexAI
+
 import os
+import json
 
-# get the creds
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"]= "secrets/glossy-attic-415618-93704b0714e2.json"
-print("GOOGLE APPLICATION CREDENTIALS BELOW PRINTED")
-print(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
+from google.oauth2 import service_account
 
-#st.header("GOOGLE CRED BELOW")
-#st.write(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
+# for running locally
+#secret = json.load(open("secrets/glossy-attic-415618-93704b0714e2.json"))
+
+# for running on GCP
+secret = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+
+credentials = service_account.Credentials.from_service_account_info(secret)
 
 TEMP_FILE_PATH = "temp.txt"
 
@@ -27,9 +34,13 @@ llm = VertexAI(
     top_p=0.8,
     top_k=40,
     verbose=True,)
-    
-embeddings = VertexAIEmbeddings(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
+print("VertexAI initialized")
+
+embeddings = VertexAIEmbeddings(model_name="textembedding-gecko@003",project="glossy-attic-415618",
+                                credentials=credentials)
+
+print("Embeddings initialized")
 
 def get_text(url):
     # Send a GET request to the URL
